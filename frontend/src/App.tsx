@@ -8,7 +8,13 @@ import Footer from "./components/Footer";
 import type { ServicePackage } from "./data/mock";
 
 function App() {
-  
+  const [preselectedPackage, setPreselectedPackage] =
+    useState<ServicePackage | null>(null);
+  const bookingRef = useRef<HTMLDivElement>(null);
+
+  const handleSelectPackage = (pkg: ServicePackage) => {
+    setPreselectedPackage(pkg);
+    bookingRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
