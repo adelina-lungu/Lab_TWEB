@@ -210,4 +210,53 @@ export const navLinks = [
   { label: "Servicii", href: "#services" },
   { label: "Programare", href: "#booking" },
 ] as const;
+export interface TeamMember {
+  id: string;
+  name: string;
+  role: string;
+  bio: string;
+  avatar: string;
+  socials: {
+    instagram?: string;
+    facebook?: string;
+    website?: string;
+  };
+}
+
+export const teamMembers: TeamMember[] = [
+  {
+    id: "alex",
+    name: "Alex Riva",
+    role: "Editorial & Fashion",
+    bio: "Cu un background în design grafic, Alex aduce o perspectivă unică fiecărei ședințe foto. Pasionat de jocul luminilor și al umbrelor, specialitatea lui sunt compozițiile îndrăznețe care spun povești fără cuvinte.",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
+    socials: {
+      instagram: "https://instagram.com",
+      website: "https://example.com",
+    },
+  },
+  {
+    id: "maria",
+    name: "Maria Bell",
+    role: "Nunți & Evenimente",
+    bio: "Maria crede că cele mai bune fotografii de nuntă sunt cele neplănuite. Cu peste 180 de nunți în portofoliu, ea știe exact când să apese pe declanșator pentru a surprinde emoțiile sincere ale momentului.",
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80",
+    socials: {
+      instagram: "https://instagram.com",
+      facebook: "https://facebook.com",
+    },
+  },
+  {
+    id: "victor",
+    name: "Victor Night",
+    role: "Portrete Artistice",
+    bio: "Victor transformă fiecare portret într-o operă de artă. Inspirat de cinematografia clasică, stilul lui combină lumina naturală cu compoziții atent gândite, creând imagini care par desprinse din filme.",
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80",
+    socials: {
+      instagram: "https://instagram.com",
+      facebook: "https://facebook.com",
+      website: "https://example.com",
+    },
+  },
+];
   
