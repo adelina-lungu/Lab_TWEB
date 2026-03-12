@@ -208,6 +208,7 @@ export const navLinks = [
   { label: "Portofoliu", href: "#portfolio" },
   { label: "Despre Noi", href: "#about" },
   { label: "Servicii", href: "#services" },
+  { label: "Echipa", href: "#team"};
   { label: "Programare", href: "#booking" },
 ] as const;
 export interface TeamMember {
