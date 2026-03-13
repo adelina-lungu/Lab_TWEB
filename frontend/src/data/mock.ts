@@ -202,6 +202,51 @@ export const photographers: Photographer[] = [
   },
 ];
 
+/* ── Testimoniale ─────────────────────────── */
+export interface Testimonial {
+  id: number;
+  name: string;
+  role: string;
+  avatar: string;
+  text: string;
+  rating: number;
+}
+
+export const testimonials: Testimonial[] = [
+  {
+    id: 1,
+    name: "Elena Moraru",
+    role: "Mireasă, 2025",
+    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80",
+    text: "Maria a reușit să surprindă fiecare emoție de la nunta noastră. Fotografiile sunt de vis — le privim în fiecare seară și retrăim totul.",
+    rating: 5,
+  },
+  {
+    id: 2,
+    name: "Andrei Ceban",
+    role: "Model, Fashion Editorial",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80",
+    text: "Colaborarea cu Alex a fost extraordinară. Știe exact cum să direcționeze și să creeze o atmosferă relaxată pe set. Rezultatele vorbesc de la sine.",
+    rating: 5,
+  },
+  {
+    id: 3,
+    name: "Cristina Donici",
+    role: "Portret de familie",
+    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80",
+    text: "Victor a transformat o ședință foto simplă într-o experiență memorabilă. Copiii mei nici nu au observat camera — exact ce ne doream.",
+    rating: 5,
+  },
+  {
+    id: 4,
+    name: "Ioana Rusu",
+    role: "Corporate Branding",
+    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&q=80",
+    text: "Am avut nevoie de fotografii profesionale pentru echipa noastră. Lumina Studio a livrat peste așteptări — calitate impecabilă și punctualitate.",
+    rating: 4,
+  },
+];
+
 
 export const navLinks = [
   { label: "Portofoliu", href: "#portfolio" },
