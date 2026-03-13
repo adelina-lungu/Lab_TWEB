@@ -1,4 +1,3 @@
-
 export interface PortfolioImage {
   id: number;
   src: string;
@@ -154,7 +153,7 @@ export interface Photographer {
   name: string;
   specialty: string;
   avatar: string;
-  busyDates: string[]; 
+  busyDates: string[];
 }
 
 export const photographers: Photographer[] = [
@@ -207,10 +206,12 @@ export const photographers: Photographer[] = [
 export const navLinks = [
   { label: "Portofoliu", href: "#portfolio" },
   { label: "Despre Noi", href: "#about" },
+  { label: "Echipa", href: "#team" },
   { label: "Servicii", href: "#services" },
-  { label: "Echipa", href: "#team"};
   { label: "Programare", href: "#booking" },
 ] as const;
+
+
 export interface TeamMember {
   id: string;
   name: string;
@@ -260,4 +261,3 @@ export const teamMembers: TeamMember[] = [
     },
   },
 ];
-  
