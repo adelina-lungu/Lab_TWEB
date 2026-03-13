@@ -295,6 +295,7 @@ export const navLinks = [
   { label: "Servicii", href: "#services" },
   { label: "Programare", href: "#booking" },
   { label: "FAQ", href: "#faq" },
+  { label: "Contact", href: "#contact" },
   { label: "Recenzii", href: "#testimonials" },
 ] as const;
 

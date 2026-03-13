@@ -12,6 +12,7 @@ import Process from "./components/Process";
 import Team from "./components/Team"; 
 import Testimonials from "./components/Testimonials";
 import Faq from "./components/Faq";
+import Contact from "./components/Contact";
 
 
 
@@ -35,6 +36,7 @@ function App() {
         <Process />
         <Team />
         <Faq />
+        <Contact />
         <Testimonials />
         <AboutUs />
         <div ref={bookingRef}>
