@@ -8,7 +8,10 @@ import Footer from "./components/Footer";
 import type { ServicePackage } from "./data/mock";
 import AboutUs from "./components/AboutUs";
 import BackToTop from "./components/BackToTop";
+import Process from "./components/Process";
 import Team from "./components/Team"; 
+
+
 
 function App() {
   const [preselectedPackage, setPreselectedPackage] =
@@ -27,6 +30,7 @@ function App() {
         <Hero />
         <Portfolio />
         <Services onSelectPackage={handleSelectPackage} />
+        <Process />
         <Team />
         <AboutUs />
         <div ref={bookingRef}>
