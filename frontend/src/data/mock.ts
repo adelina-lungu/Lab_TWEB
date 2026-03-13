@@ -247,6 +247,46 @@ export const testimonials: Testimonial[] = [
   },
 ];
 
+/* ── FAQ ──────────────────────────────────── */
+export interface FaqItem {
+  id: number;
+  question: string;
+  answer: string;
+}
+
+export const faqItems: FaqItem[] = [
+  {
+    id: 1,
+    question: "Cât durează până primesc fotografiile?",
+    answer:
+      "Timpul de livrare depinde de pachetul ales: 5 zile lucrătoare pentru Standard, 3 zile pentru Premium și 48 de ore pentru Editorial. În perioadele aglomerate (mai-septembrie), termenele pot fi extinse cu 1-2 zile.",
+  },
+  {
+    id: 2,
+    question: "Pot reprograma ședința foto?",
+    answer:
+      "Da, reprogramarea este gratuită dacă ne anunți cu cel puțin 48 de ore înainte. Pentru anulări în mai puțin de 24 de ore, se reține un avans de 30% din valoarea pachetului.",
+  },
+  {
+    id: 3,
+    question: "Oferiți servicii de fotografiere în afara Chișinăului?",
+    answer:
+      "Absolut! Acoperim toată Moldova și suntem disponibili și pentru proiecte internaționale. Pentru locații în afara Chișinăului se adaugă o taxă de deplasare calculată în funcție de distanță.",
+  },
+  {
+    id: 4,
+    question: "Ce trebuie să pregătesc pentru ședința foto?",
+    answer:
+      "Recomandăm 2-3 ținute în culori solide, fără logo-uri mari. La pachetele Premium și Editorial oferim consultanță vestimentară completă. Cel mai important: vino odihnit/ă și cu chef de distracție!",
+  },
+  {
+    id: 5,
+    question: "Primesc toate fotografiile sau doar cele editate?",
+    answer:
+      "Livrăm doar fotografiile editate profesional — acestea sunt selectate împreună cu tine dintr-o galerie de previzualizare. Numărul exact depinde de pachet (30 / 80 / 150+).",
+  },
+];
+
 
 export const navLinks = [
   { label: "Portofoliu", href: "#portfolio" },
