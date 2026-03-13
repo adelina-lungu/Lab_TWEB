@@ -39,6 +39,7 @@ function App() {
         <Process />
         <Testimonials />
         <Team />
+        <CtaBanner />
         <AboutUs />
         <Faq />
         <CtaBanner />

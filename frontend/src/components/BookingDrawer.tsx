@@ -31,9 +31,9 @@ export default function BookingDrawer({ open, onClose, preselectedPackage }: Boo
         }`}
       />
 
-      {/* drawer panel */}
+      {/* drawer panel — wider */}
       <div
-        className={`fixed top-0 right-0 z-[100] h-full w-full max-w-2xl overflow-y-auto bg-stone-950 border-l border-stone-800 shadow-2xl transition-transform duration-500 ease-out ${
+        className={`fixed top-0 right-0 z-[100] h-full w-full max-w-5xl overflow-y-auto bg-stone-950 border-l border-stone-800 shadow-2xl transition-transform duration-500 ease-out ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -56,8 +56,8 @@ export default function BookingDrawer({ open, onClose, preselectedPackage }: Boo
           </button>
         </div>
 
-        {/* booking content */}
-        <div className="pb-10">
+        {/* booking content — hide its own heading via CSS */}
+        <div className="pb-10 [&>section>div>div:first-child]:hidden">
           <Booking preselectedPackage={preselectedPackage} />
         </div>
       </div>
