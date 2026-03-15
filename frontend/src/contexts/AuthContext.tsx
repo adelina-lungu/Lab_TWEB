@@ -1,23 +1,21 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import type { ReactNode } from "react";
 
-/* ── Tipuri ─────────────────────────────────── */
 export interface User {
   name: string;
   email: string;
+  phone: string;
 }
 
 interface AuthContextType {
   user: User | null;
   login: (email: string, password: string) => string | null;
-  register: (name: string, email: string, password: string) => string | null;
+  register: (name: string, email: string, phone: string, password: string) => string | null;
   logout: () => void;
 }
 
-/* ── Context ────────────────────────────────── */
 const AuthContext = createContext<AuthContextType | null>(null);
 
-/* ── Provider ───────────────────────────────── */
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
 
@@ -32,18 +30,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  const register = (name: string, email: string, password: string): string | null => {
+  const register = (name: string, email: string, phone: string, password: string): string | null => {
     const usersRaw = localStorage.getItem("lumina_users") || "[]";
-    const users = JSON.parse(usersRaw) as Array<{ name: string; email: string; password: string }>;
+    const users = JSON.parse(usersRaw) as Array<{ name: string; email: string; phone: string; password: string }>;
 
     if (users.some((u) => u.email === email)) {
-      return "Acest email este deja înregistrat.";
+      return "Acest email este deja inregistrat.";
     }
 
-    users.push({ name, email, password });
+    users.push({ name, email, phone, password });
     localStorage.setItem("lumina_users", JSON.stringify(users));
 
-    const newUser = { name, email };
+    const newUser = { name, email, phone };
     setUser(newUser);
     localStorage.setItem("lumina_user", JSON.stringify(newUser));
     return null;
@@ -51,14 +49,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const login = (email: string, password: string): string | null => {
     const usersRaw = localStorage.getItem("lumina_users") || "[]";
-    const users = JSON.parse(usersRaw) as Array<{ name: string; email: string; password: string }>;
+    const users = JSON.parse(usersRaw) as Array<{ name: string; email: string; phone: string; password: string }>;
 
     const found = users.find((u) => u.email === email && u.password === password);
     if (!found) {
-      return "Email sau parolă incorectă.";
+      return "Email sau parola incorecta.";
     }
 
-    const loggedUser = { name: found.name, email: found.email };
+    const loggedUser = { name: found.name, email: found.email, phone: found.phone };
     setUser(loggedUser);
     localStorage.setItem("lumina_user", JSON.stringify(loggedUser));
     return null;
@@ -76,9 +74,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   );
 }
 
-/* ── Hook personalizat ──────────────────────── */
 export function useAuth() {
   const ctx = useContext(AuthContext);
-  if (!ctx) throw new Error("useAuth trebuie folosit în interiorul AuthProvider");
+  if (!ctx) throw new Error("useAuth trebuie folosit in interiorul AuthProvider");
   return ctx;
 }
