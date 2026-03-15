@@ -14,19 +14,35 @@ import Faq from "./components/Faq";
 import CtaBanner from "./components/CtaBanner";
 import Contact from "./components/Contact";
 import BookingDrawer from "./components/BookingDrawer";
+import AuthModal from "./components/AuthModal";
+import { useAuth } from "./contexts/AuthContext";
 
 function App() {
   const [preselectedPackage, setPreselectedPackage] = useState<ServicePackage | null>(null);
   const [bookingOpen, setBookingOpen] = useState(false);
+  const [authOpen, setAuthOpen] = useState(false);
+  const { user } = useAuth();
+
+  const requireAuth = (callback: () => void) => {
+    if (!user) {
+      setAuthOpen(true);
+    } else {
+      callback();
+    }
+  };
 
   const handleSelectPackage = (pkg: ServicePackage) => {
-    setPreselectedPackage(pkg);
-    setBookingOpen(true);
+    requireAuth(() => {
+      setPreselectedPackage(pkg);
+      setBookingOpen(true);
+    });
   };
 
   const handleOpenBooking = () => {
-    setPreselectedPackage(null);
-    setBookingOpen(true);
+    requireAuth(() => {
+      setPreselectedPackage(null);
+      setBookingOpen(true);
+    });
   };
 
   return (
@@ -39,10 +55,9 @@ function App() {
         <Process />
         <Testimonials />
         <Team />
-        <CtaBanner />
         <AboutUs />
         <Faq />
-        <CtaBanner />
+        <CtaBanner onOpenBooking={handleOpenBooking} />
       </main>
       <Contact />
       <Footer />
@@ -53,6 +68,8 @@ function App() {
         onClose={() => setBookingOpen(false)}
         preselectedPackage={preselectedPackage}
       />
+
+      <AuthModal open={authOpen} onClose={() => setAuthOpen(false)} />
     </div>
   );
 }
