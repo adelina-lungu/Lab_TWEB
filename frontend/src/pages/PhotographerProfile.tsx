@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, Instagram, Facebook, Globe, Camera, Heart, Award, Calendar, ArrowRight } from "lucide-react";
+import { ArrowLeft, Instagram, Facebook, Globe, Camera, Heart, Award, ArrowRight } from "lucide-react";
 import { teamMembers, photographers, portfolioImages } from "../data/mock";
+import AvailabilityCalendar from "../components/AvailabilityCalendar";
 
 export default function PhotographerProfile() {
   const { id } = useParams();
@@ -46,36 +47,30 @@ export default function PhotographerProfile() {
         </div>
       </div>
 
-      {/* ═══ HERO — fullscreen photo + overlay info ═══ */}
+      {/* ═══ HERO — fullscreen cover + overlay info ═══ */}
       <section className="relative min-h-screen flex items-end">
-        {/* Background photo */}
         <div className="absolute inset-0">
-         <img src={member.cover} alt={member.name} className="h-full w-full object-cover" />
+          <img src={member.cover} alt={member.name} className="h-full w-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/70 to-stone-950/20" />
           <div className="absolute inset-0 bg-gradient-to-r from-stone-950/80 via-transparent to-transparent" />
         </div>
 
-        {/* Content overlay */}
         <div className="relative z-10 w-full px-6 pb-16 pt-32 md:px-10 md:pb-24">
           <div className="mx-auto w-full max-w-6xl">
             <div className="max-w-2xl">
-              {/* Role tag */}
               <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-gold-400/30 bg-gold-400/10 px-4 py-1.5 backdrop-blur-sm">
                 <Camera size={12} className="text-gold-400" />
                 <span className="text-xs font-medium tracking-[0.2em] uppercase text-gold-400">{member.role}</span>
               </div>
 
-              {/* Name */}
               <h1 className="font-serif text-5xl font-semibold text-stone-50 sm:text-6xl lg:text-7xl">
                 {member.name}
               </h1>
 
-              {/* Bio */}
               <p className="mt-6 text-base leading-relaxed text-stone-300 sm:text-lg max-w-xl">
                 {member.bio}
               </p>
 
-              {/* Stats inline */}
               <div className="mt-8 flex flex-wrap gap-6">
                 {stats.map((s) => (
                   <div key={s.label} className="flex items-center gap-3">
@@ -90,7 +85,6 @@ export default function PhotographerProfile() {
                 ))}
               </div>
 
-              {/* Social + CTA */}
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 {member.socials.instagram && (
                   <a href={member.socials.instagram} target="_blank" rel="noopener noreferrer" className="flex h-11 w-11 items-center justify-center rounded-full border border-stone-600/50 bg-stone-900/50 text-stone-300 backdrop-blur-sm transition-all hover:border-gold-400 hover:text-gold-400">
@@ -116,37 +110,21 @@ export default function PhotographerProfile() {
           </div>
         </div>
 
-        {/* Scroll indicator */}
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10">
           <div className="h-12 w-px bg-gradient-to-b from-transparent via-gold-400/50 to-transparent animate-bounce" />
         </div>
       </section>
 
       {/* ═══ AVAILABILITY ═══ */}
-      {photographer && (
-        <section className="px-6 py-16 md:px-10">
-          <div className="mx-auto w-full max-w-6xl">
-            <div className="rounded-lg border border-stone-800 bg-stone-900/30 px-6 py-8 sm:px-10">
-              <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-                <div className="flex items-center gap-3">
-                  <Calendar size={20} className="text-gold-400" />
-                  <div>
-                    <p className="text-sm font-semibold text-stone-100">Disponibilitate luna aceasta</p>
-                    <p className="text-xs text-stone-500">Zilele marcate sunt deja rezervate</p>
-                  </div>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {photographer.busyDates.map((date) => (
-                    <span key={date} className="rounded-full border border-red-500/20 bg-red-500/5 px-3 py-1 text-xs font-medium text-red-400">
-                      {new Date(date + "T00:00:00").toLocaleDateString("ro-RO", { day: "numeric", month: "short" })}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
+      <section className="px-6 py-16 md:px-10">
+        <div className="mx-auto w-full max-w-2xl">
+          <AvailabilityCalendar
+            photographerId={member.id}
+            photographerName={member.name}
+            initialBusyDates={photographer?.busyDates || []}
+          />
+        </div>
+      </section>
 
       {/* ═══ PORTFOLIO ═══ */}
       <section id="portofoliu" className="px-6 py-16 md:px-10 md:py-24">
