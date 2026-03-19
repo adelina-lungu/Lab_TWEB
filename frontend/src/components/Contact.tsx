@@ -2,10 +2,9 @@ import { useState } from "react";
 import { MapPin, Phone, Clock, Send, CheckCircle } from "lucide-react";
 
 const contactInfo = [
-  {
-    icon: <MapPin size={18} />,
+  {icon: <MapPin size={18} />,
     label: "Adresă",
-    value: "Str. Ștefan cel Mare 64, Chișinău",
+    value: "Str. Studenților 9/11, Chișinău (UTM, Râșcani)",
   },
   {
     icon: <Phone size={18} />,
@@ -149,7 +148,7 @@ export default function Contact() {
             <div className="flex-1 min-h-[300px] rounded-lg border border-stone-800 overflow-hidden">
               <iframe
                 title="Locația LUMINA Studio"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2719.8!2d28.8278!3d47.0245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c97c3628b769a1%3A0x37d1d6305749dd3c!2sStefan%20cel%20Mare%20si%20Sfant%20Boulevard%2C%20Chisinau!5e0!3m2!1sen!2smd!4v1700000000000!5m2!1sen!2smd"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2720.5!2d28.8075!3d47.0365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c97c456a8c8b0d%3A0x7b3f3b1e3b3b3b3b!2sUniversitatea%20Tehnic%C4%83%20a%20Moldovei!5e0!3m2!1sro!2smd!4v1700000000000!5m2!1sro!2smd"
                 width="100%"
                 height="100%"
                 style={{ border: 0, minHeight: "300px" }}
