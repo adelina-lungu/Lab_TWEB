@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Portfolio from "./components/Portfolio";
@@ -15,9 +16,10 @@ import CtaBanner from "./components/CtaBanner";
 import Contact from "./components/Contact";
 import BookingDrawer from "./components/BookingDrawer";
 import AuthModal from "./components/AuthModal";
+import NotFoundPage from "./errors/NotFoundPage";
 import { useAuth } from "./contexts/AuthContext";
 
-function App() {
+function HomePage() {
   const [preselectedPackage, setPreselectedPackage] = useState<ServicePackage | null>(null);
   const [bookingOpen, setBookingOpen] = useState(false);
   const [authOpen, setAuthOpen] = useState(false);
@@ -71,6 +73,15 @@ function App() {
 
       <AuthModal open={authOpen} onClose={() => setAuthOpen(false)} />
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
   );
 }
 
