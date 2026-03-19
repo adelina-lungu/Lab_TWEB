@@ -1,84 +1,60 @@
-import { Instagram, Facebook, Globe } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import { teamMembers } from "../data/mock";
 
 export default function Team() {
+  const navigate = useNavigate();
+
   return (
     <section id="team" className="px-6 py-20 md:px-10 md:py-28">
       <div className="mx-auto w-full max-w-6xl">
-        {/* heading */}
         <div className="mb-12 text-center md:mb-16">
           <p className="mb-3 text-sm font-medium tracking-[0.3em] uppercase text-gold-400">
-            Echipa Noastră
+            Echipa Noastra
           </p>
           <h2 className="font-serif text-3xl font-semibold text-stone-100 sm:text-4xl md:text-5xl">
             Oamenii din Spatele Camerei
           </h2>
+          <p className="mx-auto mt-4 max-w-lg text-sm text-stone-400 sm:text-base">
+            Apasa pe fotograf pentru a-i vedea portofoliul complet.
+          </p>
         </div>
 
-        {/* carduri */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Avatar bar */}
+        <div className="flex flex-col items-center gap-10 sm:flex-row sm:justify-center sm:gap-16 lg:gap-24">
           {teamMembers.map((member) => (
-            <div
+            <button
               key={member.id}
-              className="group flex flex-col border border-stone-800 bg-stone-900/30 overflow-hidden transition-all duration-500 hover:border-stone-700"
+              onClick={() => navigate(`/photographer/${member.id}`)}
+              className="group flex cursor-pointer flex-col items-center gap-4 transition-all duration-500"
             >
-              {/* imagine */}
-              <div className="relative overflow-hidden aspect-[4/5]">
-                <img
-                  src={member.avatar}
-                  alt={member.name}
-                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                />
-                {/* overlay cu social links la hover */}
-                <div className="absolute inset-0 flex items-end justify-center bg-gradient-to-t from-stone-950/80 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                  <div className="mb-6 flex gap-3">
-                    {member.socials.instagram && (
-                      <a
-                        href={member.socials.instagram}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex h-9 w-9 items-center justify-center rounded-full border border-stone-600 bg-stone-900/80 text-stone-300 transition-all hover:border-gold-400 hover:text-gold-400"
-                      >
-                        <Instagram size={15} />
-                      </a>
-                    )}
-                    {member.socials.facebook && (
-                      <a
-                        href={member.socials.facebook}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex h-9 w-9 items-center justify-center rounded-full border border-stone-600 bg-stone-900/80 text-stone-300 transition-all hover:border-gold-400 hover:text-gold-400"
-                      >
-                        <Facebook size={15} />
-                      </a>
-                    )}
-                    {member.socials.website && (
-                      <a
-                        href={member.socials.website}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex h-9 w-9 items-center justify-center rounded-full border border-stone-600 bg-stone-900/80 text-stone-300 transition-all hover:border-gold-400 hover:text-gold-400"
-                      >
-                        <Globe size={15} />
-                      </a>
-                    )}
-                  </div>
+              {/* Avatar ring */}
+              <div className="relative">
+                <div className="h-32 w-32 overflow-hidden rounded-full border-2 border-stone-700 transition-all duration-500 group-hover:border-gold-400 sm:h-40 sm:w-40">
+                  <img
+                    src={member.avatar}
+                    alt={member.name}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                </div>
+                {/* Glow on hover */}
+                <div className="absolute inset-0 rounded-full opacity-0 transition-opacity duration-500 group-hover:opacity-100 shadow-[0_0_30px_rgba(201,169,110,0.15)]" />
+                {/* Arrow badge */}
+                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full border border-stone-700 bg-stone-900 text-stone-500 transition-all duration-300 group-hover:border-gold-400 group-hover:bg-gold-400 group-hover:text-stone-950">
+                  <ArrowRight size={14} />
                 </div>
               </div>
 
-              {/* text info */}
-              <div className="p-5 sm:p-6">
-                <h3 className="font-serif text-lg font-semibold text-stone-100">
+              {/* Name + role */}
+              <div className="text-center">
+                <p className="font-serif text-lg font-semibold text-stone-100 transition-colors duration-300 group-hover:text-gold-400">
                   {member.name}
-                </h3>
-                <p className="mt-1 text-xs font-medium tracking-wide uppercase text-gold-400">
+                </p>
+                <p className="mt-1 text-xs font-medium tracking-wide uppercase text-stone-500">
                   {member.role}
                 </p>
-                <p className="mt-3 text-sm leading-relaxed text-stone-400">
-                  {member.bio}
-                </p>
               </div>
-            </div>
+            </button>
           ))}
         </div>
       </div>
