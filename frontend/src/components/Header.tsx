@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import { Menu, X, LogIn, LogOut, User, ChevronDown } from "lucide-react";
+import { Menu, X, LogIn, LogOut, User, ChevronDown, MessageCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { navLinks } from "../data/mock";
 import { useAuth } from "../contexts/AuthContext";
 import AuthModal from "./AuthModal";
@@ -15,6 +16,7 @@ export default function Header({ onOpenBooking }: HeaderProps) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { user, logout } = useAuth();
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -59,14 +61,12 @@ export default function Header({ onOpenBooking }: HeaderProps) {
     <>
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "bg-stone-950/80 backdrop-blur-xl border-b border-stone-800/50" : "bg-transparent"}`}>
         <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-5 md:px-10">
-          {/* Logo — stanga */}
-          <a href="#" className="group flex items-center gap-2">
+          <a href="/" className="group flex items-center gap-2">
             <span className="font-serif text-2xl font-semibold tracking-[0.2em] text-stone-100 transition-colors group-hover:text-gold-400">
               LUMINA
             </span>
           </a>
 
-          {/* Centru — nav links */}
           <ul className="hidden items-center gap-10 md:flex">
             {navLinks.map((link) => (
               <li key={link.href}>
@@ -83,7 +83,6 @@ export default function Header({ onOpenBooking }: HeaderProps) {
             ))}
           </ul>
 
-          {/* Dreapta — cont */}
           <div className="hidden md:flex items-center">
             {user ? (
               <div ref={dropdownRef} className="relative">
@@ -99,12 +98,21 @@ export default function Header({ onOpenBooking }: HeaderProps) {
                     <div className="border-b border-stone-800 px-4 py-3">
                       <p className="text-sm font-medium text-stone-100">{user.name}</p>
                       <p className="text-xs text-stone-500">{user.email}</p>
+                      {user.role === "admin" && (
+                        <span className="mt-1 inline-block rounded bg-gold-400/10 border border-gold-400/30 px-2 py-0.5 text-[10px] font-medium tracking-wide uppercase text-gold-400">Admin</span>
+                      )}
                     </div>
                     <div className="p-1.5">
                       <button onClick={() => { setDropdownOpen(false); }} className="flex w-full cursor-pointer items-center gap-2.5 rounded-md px-3 py-2 text-sm text-stone-400 transition-colors hover:bg-stone-800 hover:text-stone-100">
                         <User size={15} />
                         Profilul meu
                       </button>
+                      {user.role === "admin" && (
+                        <button onClick={() => { setDropdownOpen(false); navigate("/admin/support"); }} className="flex w-full cursor-pointer items-center gap-2.5 rounded-md px-3 py-2 text-sm text-stone-400 transition-colors hover:bg-stone-800 hover:text-stone-100">
+                          <MessageCircle size={15} />
+                          Suport Chat
+                        </button>
+                      )}
                       <button onClick={handleLogout} className="flex w-full cursor-pointer items-center gap-2.5 rounded-md px-3 py-2 text-sm text-stone-400 transition-colors hover:bg-red-500/10 hover:text-red-400">
                         <LogOut size={15} />
                         Iesire din cont
@@ -121,13 +129,11 @@ export default function Header({ onOpenBooking }: HeaderProps) {
             )}
           </div>
 
-          {/* Mobile toggle */}
           <button onClick={() => setMobileOpen(!mobileOpen)} className="cursor-pointer text-stone-300 md:hidden" aria-label="Toggle menu">
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </nav>
 
-        {/* Mobile menu */}
         <div className={`overflow-hidden border-b border-stone-800/50 bg-stone-950/95 backdrop-blur-xl transition-all duration-300 md:hidden ${mobileOpen ? "max-h-[450px] opacity-100" : "max-h-0 opacity-0 border-none"}`}>
           <ul className="flex flex-col gap-4 px-6 py-6">
             {navLinks.map((link) => (

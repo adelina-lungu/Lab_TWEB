@@ -21,6 +21,10 @@ import { useAuth } from "./contexts/AuthContext";
 import ServerErrorPage from "./errors/ServerErrorPage";
 import ForbiddenPage from "./errors/ForbiddenPage";
 import PhotographerProfile from "./pages/PhotographerProfile";
+import ChatWidget from "./components/ChatWidget";
+import AdminSupport from "./pages/AdminSupport";
+
+
 
 function HomePage() {
   const [preselectedPackage, setPreselectedPackage] = useState<ServicePackage | null>(null);
@@ -81,13 +85,17 @@ function HomePage() {
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/photographer/:id" element={<PhotographerProfile />} />
-      <Route path="/403" element={<ForbiddenPage />} />
-      <Route path="/500" element={<ServerErrorPage />} />
-      <Route path="*" element={<NotFoundPage />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/photographer/:id" element={<PhotographerProfile />} />
+        <Route path="/admin/support" element={<AdminSupport />} />
+        <Route path="/403" element={<ForbiddenPage />} />
+        <Route path="/500" element={<ServerErrorPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+      <ChatWidget />
+    </>
   );
 }
 
